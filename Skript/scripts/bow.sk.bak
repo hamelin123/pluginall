@@ -1,0 +1,33 @@
+on rightclick:
+    if player's tool is bow:
+        if player is sneaking:
+            if {superarrow.cooldown::%uuid of player%} is not set:
+                cancel event
+                shoot_super_arrow(player)
+                set {superarrow.cooldown::%uuid of player%} to now
+                send "&aคุณได้ใช้ Super Arrow Skill!" to player
+            else:
+                set {_timeleft} to difference between now and {superarrow.cooldown::%uuid of player%}
+                if {_timeleft} is less than 2 seconds:
+                    set {_remaining} to "%{_timeleft}%"
+                    replace all " seconds" and " second" with "" in {_remaining}
+                    set {_remaining} to 2 - ({_remaining} parsed as number)
+                    send "&cคุณต้องรออีก %{_remaining}% วินาทีก่อนใช้ Super Arrow Skill อีกครั้ง" to player
+
+function shoot_super_arrow(p: player):
+    loop 10 times:
+        make {_p} shoot arrow with speed 2
+        set {_arrow} to last shot projectile
+        set {superarrow::%uuid of {_arrow}%} to true
+
+on damage:
+    if attacker is an arrow:
+        if {superarrow::%uuid of attacker%} is set:
+            set damage to 3  # 1.5 หัวใจ (3 หน่วยดาเมจ)
+            delete {superarrow::%uuid of attacker%}
+
+every 2 seconds:
+    loop all players:
+        if {superarrow.cooldown::%uuid of loop-player%} is set:
+            if difference between now and {superarrow.cooldown::%uuid of loop-player%} is more than 2 seconds:
+                delete {superarrow.cooldown::%uuid of loop-player%}

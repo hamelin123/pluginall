@@ -1,0 +1,344 @@
+options:
+    colors: &0, &1, &2, &3, &4, &5, &6, &7, &8, &9, &a, &b, &c, &d, &e, &f
+
+command /poison:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&aPoison" to lore of player's tool
+            send "&aYour sword has been enchanted with poison!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /blindness:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&7Blindness" to lore of player's tool
+            send "&aYour sword has been enchanted with blindness!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /speed:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&bSpeed" to lore of player's tool
+            send "&aYour sword has been enchanted with speed!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /slowness:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&bSlowness" to lore of player's tool
+            send "&aYour sword has been enchanted with slowness!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /haste:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&bHaste" to lore of player's tool
+            send "&aYour sword has been enchanted with haste!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /strength:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&cStrength" to lore of player's tool
+            send "&aYour sword has been enchanted with strength!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /jumpboost:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&aJump Boost" to lore of player's tool
+            send "&aYour sword has been enchanted with jump boost!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /regeneration:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&dRegeneration" to lore of player's tool
+            send "&aYour sword has been enchanted with regeneration!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /resistance:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&7Resistance" to lore of player's tool
+            send "&aYour sword has been enchanted with resistance!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /fireresistance:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&6Fire Resistance" to lore of player's tool
+            send "&aYour sword has been enchanted with fire resistance!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /waterbreathing:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&bWater Breathing" to lore of player's tool
+            send "&aYour sword has been enchanted with water breathing!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /invisibility:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&7Invisibility" to lore of player's tool
+            send "&aYour sword has been enchanted with invisibility!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /nightvision:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&9Night Vision" to lore of player's tool
+            send "&aYour sword has been enchanted with night vision!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /hunger:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&2Hunger" to lore of player's tool
+            send "&aYour sword has been enchanted with hunger!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /weakness:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&8Weakness" to lore of player's tool
+            send "&aYour sword has been enchanted with weakness!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /wither:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&0Wither" to lore of player's tool
+            send "&aYour sword has been enchanted with wither!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /healthboost:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&eHealth Boost" to lore of player's tool
+            send "&aYour sword has been enchanted with health boost!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /absorption:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&eAbsorption" to lore of player's tool
+            send "&aYour sword has been enchanted with absorption!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /saturation:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&6Saturation" to lore of player's tool
+            send "&aYour sword has been enchanted with saturation!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /glowing:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&eGlowing" to lore of player's tool
+            send "&aYour sword has been enchanted with glowing!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /levitation:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&bLevitation" to lore of player's tool
+            send "&aYour sword has been enchanted with levitation!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /luck:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&aLuck" to lore of player's tool
+            send "&aYour sword has been enchanted with luck!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /unluck:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&cUnluck" to lore of player's tool
+            send "&aYour sword has been enchanted with unluck!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /slowfalling:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&fSlow Falling" to lore of player's tool
+            send "&aYour sword has been enchanted with slow falling!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /conduitpower:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&bConduit Power" to lore of player's tool
+            send "&aYour sword has been enchanted with conduit power!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /dolphinsgrace:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&bDolphin's Grace" to lore of player's tool
+            send "&aYour sword has been enchanted with dolphin's grace!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /badomen:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&7Bad Omen" to lore of player's tool
+            send "&aYour sword has been enchanted with bad omen!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+command /heroofthevillage:
+    permission: sword.use
+    trigger:
+        if player's tool is a sword:
+            add "&aHero of the Village" to lore of player's tool
+            send "&aYour sword has been enchanted with hero of the village!"
+        else:
+            send "&cYou need to hold a sword to use this command!"
+
+on damage:
+    attacker is a player
+    victim is a player
+    set {_lore::*} to uncolored lore of attacker's tool
+    loop {_lore::*}:
+        if loop-value contains "Poison":
+            apply poison 1 to the victim for 10 seconds
+            send "&2You have been poisoned!" to the victim
+        if loop-value contains "Blindness":
+            apply blindness 1 to the victim for 10 seconds
+            send "&2You have been blinded!" to the victim
+        if loop-value contains "Speed":
+            apply speed 1 to attacker for 10 seconds
+            send "&2You have been sped up!" to attacker
+        if loop-value contains "Slowness":
+            apply slowness 1 to the victim for 10 seconds
+            send "&2You have been slowed!" to the victim
+        if loop-value contains "Haste":
+            apply haste 1 to attacker for 10 seconds
+            send "&2You have been hasted!" to attacker
+        if loop-value contains "Strength":
+            apply strength 1 to attacker for 10 seconds
+            send "&2You have been strengthened!" to attacker
+        if loop-value contains "Jump Boost":
+            apply jump boost 1 to attacker for 10 seconds
+            send "&2You have been boosted!" to attacker
+        if loop-value contains "Regeneration":
+            apply regeneration 1 to attacker for 10 seconds
+            send "&2You have been regenerated!" to attacker
+        if loop-value contains "Resistance":
+            apply resistance 1 to attacker for 10 seconds
+            send "&2You have been resisted!" to attacker
+        if loop-value contains "Fire Resistance":
+            apply fire resistance 1 to attacker for 10 seconds
+            send "&2You have been fire resistant!" to attacker
+        if loop-value contains "Water Breathing":
+            apply water breathing 1 to attacker for 10 seconds
+            send "&2You have been given water breathing!" to attacker
+        if loop-value contains "Invisibility":
+            apply invisibility 1 to attacker for 10 seconds
+            send "&2You have been made invisible!" to attacker
+        if loop-value contains "Night Vision":
+            apply night vision 1 to attacker for 10 seconds
+            send "&2You have been given night vision!" to attacker
+        if loop-value contains "Hunger":
+            apply hunger 1 to the victim for 10 seconds
+            send "&2You have been made hungry!" to the victim
+        if loop-value contains "Weakness":
+            apply weakness 1 to the victim for 10 seconds
+            send "&2You have been weakened!" to the victim
+        if loop-value contains "Wither":
+            apply wither 1 to the victim for 10 seconds
+            send "&2You have been withered!" to the victim
+        if loop-value contains "Health Boost":
+            apply health boost 1 to attacker for 10 seconds
+            send "&2You have been given a health boost!" to attacker
+        if loop-value contains "Absorption":
+            apply absorption 1 to attacker for 10 seconds
+            send "&2You have been given absorption!" to attacker
+        if loop-value contains "Saturation":
+            apply saturation 1 to attacker for 10 seconds
+            send "&2You have been given saturation!" to attacker
+        if loop-value contains "Glowing":
+            apply glowing 1 to the victim for 10 seconds
+            send "&2You have been made glowing!" to the victim
+        if loop-value contains "Levitation":
+            apply levitation 1 to the victim for 10 seconds
+            send "&2You have been levitated!" to the victim
+        if loop-value contains "Luck":
+            apply luck 1 to attacker for 10 seconds
+            send "&2You have been given luck!" to attacker
+        if loop-value contains "Unluck":
+            apply unluck 1 to the victim for 10 seconds
+            send "&2You have been made unlucky!" to the victim
+        if loop-value contains "Slow Falling":
+            apply slow falling 1 to attacker for 10 seconds
+            send "&2You have been given slow falling!" to attacker
+        if loop-value contains "Conduit Power":
+            apply conduit power 1 to attacker for 10 seconds
+            send "&2You have been given conduit power!" to attacker
+        if loop-value contains "Dolphin's Grace":
+            apply dolphin's grace 1 to attacker for 10 seconds
+            send "&2You have been given dolphin's grace!" to attacker
+        if loop-value contains "Bad Omen":
+            apply bad omen 1 to the victim for 10 seconds
+            send "&2You have been given bad omen!" to the victim
+        if loop-value contains "Hero of the Village":
+            apply hero of the village 1 to attacker for 10 seconds
+            send "&2You have been given hero of the village!" to attacker

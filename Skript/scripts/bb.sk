@@ -1,0 +1,41 @@
+on right click:
+    if player's tool is a blaze rod:
+        set {_lore::*} to lore of player's tool
+        if {_lore::*} contains "bb":
+            if {bubble.blast.cooldown::%uuid of player%} is not set:
+                execute_bubble_blast(player)
+            else if difference between now and {bubble.blast.cooldown::%uuid of player%} > 2 seconds:
+                execute_bubble_blast(player)
+            else:
+                set {_remaining} to difference between {bubble.blast.cooldown::%uuid of player%} and now
+                send "&cBubble Blast is on cooldown. Please wait %{_remaining}%." to player
+
+function execute_bubble_blast(p: player):
+    loop 10 times:
+        shoot a snowball from {_p} at speed 1.5
+        set {_projectile} to last shot projectile
+        set {bubble.blast::%uuid of {_projectile}%} to uuid of {_p}
+    set {bubble.blast.cooldown::%uuid of {_p}%} to now
+    send "&aBubble Blast activated!" to {_p}
+
+on projectile hit:
+    if {bubble.blast::%uuid of projectile%} is set:
+        create explosion of force 0 at projectile
+        set {_loc} to location of projectile
+        play sound "block.water.ambient" with volume 1 at {_loc}
+        loop 30 times:
+            set {_x} to a random number between -1 and 1
+            set {_y} to a random number between -1 and 1
+            set {_z} to a random number between -1 and 1
+            set {_splashLoc} to {_loc} ~ vector({_x}, {_y}, {_z})
+            show water splash at {_splashLoc}
+        loop entities in radius 3 around projectile:
+            if loop-entity is a living entity:
+                if uuid of loop-entity is not {bubble.blast::%uuid of projectile%}:
+                    damage loop-entity by 5  # เพิ่มดาเมจเป็น 5
+        delete {bubble.blast::%uuid of projectile%}
+
+on damage:
+    if attacker is a snowball:
+        if {bubble.blast::%uuid of attacker%} is set:
+            cancel event

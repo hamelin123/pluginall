@@ -1,0 +1,42 @@
+options:
+    MSG_GetBuff: &8>>> &7คุณได้รับเอฟเฟกต์จาก &bTS &7ระดับ &b5 &7เป็นเวลา &b20 &7วินาที! &8<<<
+    MSG_Cooldown: &cคุณไม่สามารถใช้เอฟเฟกต์นี้ได้ในขณะนี้ กรุณารออีก &b%{_cooldown}% &cวินาที
+    MSG_InvalidUse: &cคุณต้องถือไอเท็มที่มี TS อยู่ใน lore หรือสวมหมวกที่มี TS อยู่ใน lore
+    COOLDOWN_TIME: 30 seconds
+    
+function setCooldown(p: player, skill: text):
+    set {cooldown::%{p's uuid}%::%{skill}%} to now + {@COOLDOWN_TIME}
+
+function canUseSkill(p: player, skill: text) :: boolean:
+    if {cooldown::%{p's uuid}%::%{skill}%} is set:
+        if difference between now and {cooldown::%{p's uuid}%::%{skill}%} < {@COOLDOWN_TIME}:
+            return false
+    return true
+
+command /ts:
+    trigger:
+        set {_toolLore::*} to uncolored lore of player's tool
+        set {_helmetLore::*} to uncolored lore of player's helmet
+        set {_canUse} to false
+        loop {_toolLore::*}:
+            if loop-value contains "TS":
+                set {_canUse} to true
+        loop {_helmetLore::*}:
+            if loop-value contains "TS":
+                set {_canUse} to true
+        if {_canUse} is true:
+            if canUseSkill(player, "TS") is true:
+                apply speed 5 to player for 20 seconds
+                apply haste 5 to player for 20 seconds
+                apply strength 5 to player for 20 seconds
+                apply jump boost 5 to player for 20 seconds
+                apply regeneration 5 to player for 20 seconds
+                apply resistance 5 to player for 20 seconds
+                apply fire resistance 5 to player for 20 seconds
+                send "{@MSG_GetBuff}" to player
+                setCooldown(player, "TS")
+            else:
+                set {_cooldown} to {@COOLDOWN_TIME} - difference between now and {cooldown::%{player's uuid}%::TS}
+        else:
+            send "{@MSG_InvalidUse}" to player
+

@@ -1,0 +1,440 @@
+#===================================================================================================#
+#                                                                                                   #
+#        /       _ _ _      \          _ _ _    _ _ _    \_ _ _               _ _ _ _   _ _ _ _     #
+#       / \  /|     \        \_   |      /     /     \   |      \     /\     /         /    |   \   #
+#      |   |/ |      |       | |  |     |     \          | _ _ /     /  \    \ _ _         /        #
+#      |   /  |      |       |  \ |     |     /          |    \     /    \   /             \        #
+#     /       |      \       |   \|     |     |          |    /\   |______|  |             /        #
+#    /        \     _ \_ _   |    |  _ _/ _   \_ _ _ /   |/     \  |      |  |             |        #
+#                                                                                                   #
+#===================================================================================================#
+#																									#
+#                                         Thank you very much^^										#
+#																									#
+#===================================================================================================#
+
+options:
+    MSG_GetBuff: &8>>> &7คุณได้รับเอฟเฟคยา &b%{_effect}% &7ระดับ &b%{_tier}% &7เป็นเวลา &b%{_time}%  &8<<<
+
+    Check: Effect
+
+    CHECK-ABSORPTION: ABSORPTION
+    TIER-ABSORPTION: 1
+    TIME-ABSORPTION: 60 seconds
+    TARGET-ABSORPTION: attacker
+
+    CHECK-BAD_OMEN: BAD_OMEN
+    TIER-BAD_OMEN: 1
+    TIME-BAD_OMEN: 60 seconds
+    TARGET-BAD_OMEN: victim
+
+    CHECK-BLINDNESS: BLINDNESS
+    TIER-BLINDNESS: 1
+    TIME-BLINDNESS: 60 seconds
+    TARGET-BLINDNESS: victim
+
+    CHECK-CONDUIT_POWER: CONDUIT_POWER
+    TIER-CONDUIT_POWER: 1
+    TIME-CONDUIT_POWER: 60 seconds
+    TARGET-CONDUIT_POWER: attacker
+    
+    CHECK-CONFUSION: CONFUSION
+    TIER-CONFUSION: 1
+    TIME-CONFUSION: 60 seconds
+    TARGET-CONFUSION: victim
+
+    CHECK-DAMAGE_RESISTANCE: DAMAGE_RESISTANCE
+    TIER-DAMAGE_RESISTANCE: 1
+    TIME-DAMAGE_RESISTANCE: 60 seconds
+    TARGET-DAMAGE_RESISTANCE: attacker
+
+    CHECK-DOLPHINS_GRACE: DOLPHINS_GRACE
+    TIER-DOLPHINS_GRACE: 1
+    TIME-DOLPHINS_GRACE: 60 seconds
+    TARGET-DOLPHINS_GRACE: attacker
+
+    CHECK-FAST_DIGGING: FAST_DIGGING
+    TIER-FAST_DIGGING: 1
+    TIME-FAST_DIGGING: 60 seconds
+    TARGET-FAST_DIGGING: attacker
+
+    CHECK-FIRE_RESISTANCE: FIRE_RESISTANCE
+    TIER-FIRE_RESISTANCE: 1
+    TIME-FIRE_RESISTANCE: 60 seconds
+    TARGET-FIRE_RESISTANCE: attacker
+
+    CHECK-GLOWING: GLOWING
+    TIER-GLOWING: 1
+    TIME-GLOWING: 60 seconds
+    TARGET-GLOWING: victim
+
+    CHECK-HEALTH_BOOST: HEALTH_BOOST
+    TIER-HEALTH_BOOST: 1
+    TIME-HEALTH_BOOST: 60 seconds
+    TARGET-HEALTH_BOOST: attacker
+
+    CHECK-HERO_OF_THE_VILLAGE: HERO_OF_THE_VILLAGE
+    TIER-HERO_OF_THE_VILLAGE: 1
+    TIME-HERO_OF_THE_VILLAGE: 60 seconds
+    TARGET-HERO_OF_THE_VILLAGE: attacker
+
+    CHECK-HUNGER: HUNGER
+    TIER-HUNGER: 1
+    TIME-HUNGER: 60 seconds
+    TARGET-HUNGER: victim
+
+    CHECK-INCREASE_DAMAGE: INCREASE_DAMAGE
+    TIER-INCREASE_DAMAGE: 1
+    TIME-INCREASE_DAMAGE: 60 seconds
+    TARGET-INCREASE_DAMAGE: attacker
+
+    CHECK-INVISIBILITY: INVISIBILITY
+    TIER-INVISIBILITY: 1
+    TIME-INVISIBILITY: 60 seconds
+    TARGET-INVISIBILITY: attacker
+
+    CHECK-JUMP: JUMP
+    TIER-JUMP: 1
+    TIME-JUMP: 60 seconds
+    TARGET-JUMP: attacker
+
+    CHECK-LEVITATION: LEVITATION
+    TIER-LEVITATION: 1
+    TIME-LEVITATION: 60 seconds
+    TARGET-LEVITATION: victim
+
+    CHECK-LUCK: LUCK
+    TIER-LUCK: 1
+    TIME-LUCK: 60 seconds
+    TARGET-LUCK: attacker
+
+    CHECK-NIGHT_VISION: NIGHT_VISION
+    TIER-NIGHT_VISION: 1
+    TIME-NIGHT_VISION: 60 seconds
+    TARGET-NIGHT_VISION: attacker
+
+    CHECK-POISON: POISON
+    TIER-POISON: 1
+    TIME-POISON: 60 seconds
+    TARGET-POISON: victim
+
+    CHECK-REGENERATION: REGENERATION
+    TIER-REGENERATION: 1
+    TIME-REGENERATION: 60 seconds
+    TARGET-REGENERATION: attacker
+
+    CHECK-SATURATION: SATURATION
+    TIER-SATURATION: 1
+    TIME-SATURATION: 60 seconds
+    TARGET-SATURATION: victim
+
+    CHECK-SLOW: SLOW
+    TIER-SLOW: 1
+    TIME-SLOW: 60 seconds
+    TARGET-SLOW: victim
+
+    CHECK-SLOW_DIGGING: SLOW_DIGGING
+    TIER-SLOW_DIGGING: 1
+    TIME-SLOW_DIGGING: 60 seconds
+    TARGET-SLOW_DIGGING: victim
+
+    CHECK-SLOW_FALLING: SLOW_FALLING
+    TIER-SLOW_FALLING: 1
+    TIME-SLOW_FALLING: 60 seconds
+    TARGET-SLOW_FALLING: attacker
+
+    CHECK-SPEED: SPEED
+    TIER-SPEED: 1
+    TIME-SPEED: 60 seconds
+    TARGET-SPEED: attacker
+
+    CHECK-UNLUCK: UNLUCK
+    TIER-UNLUCK: 1
+    TIME-UNLUCK: 60 seconds
+    TARGET-UNLUCK: victim
+
+    CHECK-WATER_BREATHING: WATER_BREATHING
+    TIER-WATER_BREATHING: 1
+    TIME-WATER_BREATHING: 60 seconds
+    TARGET-WATER_BREATHING: attacker
+
+    CHECK-WEAKNESS: WEAKNESS
+    TIER-WEAKNESS: 1
+    TIME-WEAKNESS: 60 seconds
+    TARGET-WEAKNESS: victim
+    
+    CHECK-WITHER: WITHER
+    TIER-WITHER: 1
+    TIME-WITHER: 60 seconds
+    TARGET-WITHER: victim
+
+	
+command /lore <text>:
+    permission: skript.lore
+    trigger:
+        if player's tool is not air:
+            set lore of player's tool to "%{arg-1}%"
+            send "&aLore has been set to &f%arg-1% &asuccessfully!"
+        else:
+            send "&cYou need to hold an item to set the lore."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#------------------------------------------------------------------------- ห้ามทำการแก้ไขก่อนได้รับอนุญาติ ------------------------------------------------------------------
+#------------------------------------------------------------------------- ห้ามทำการแก้ไขก่อนได้รับอนุญาติ ------------------------------------------------------------------
+#------------------------------------------------------------------------- ห้ามทำการแก้ไขก่อนได้รับอนุญาติ ------------------------------------------------------------------
+#------------------------------------------------------------------------- ห้ามทำการแก้ไขก่อนได้รับอนุญาติ ------------------------------------------------------------------
+#------------------------------------------------------------------------- ห้ามทำการแก้ไขก่อนได้รับอนุญาติ ------------------------------------------------------------------
+on damage:
+    set {_lore::*} to uncolored lore of attacker's tool
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-ABSORPTION}":
+        set {_potion} to ABSORPTION
+        set {_effect} to "{@CHECK-ABSORPTION}"
+        set {_tier} to {@TIER-ABSORPTION}
+        set {_time} to {@TIME-ABSORPTION}
+        set {_target} to {@TARGET-ABSORPTION}
+
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-BAD_OMEN}":
+        set {_potion} to BAD OMEN
+        set {_effect} to "{@CHECK-BAD_OMEN}"
+        set {_tier} to {@TIER-BAD_OMEN}
+        set {_time} to {@TIME-BAD_OMEN}
+        set {_target} to {@TARGET-BAD_OMEN}
+
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-BLINDNESS}":
+        set {_potion} to BLINDNESS
+        set {_effect} to "{@CHECK-BLINDNESS}"
+        set {_tier} to {@TIER-BLINDNESS}
+        set {_time} to {@TIME-BLINDNESS}
+        set {_target} to {@TARGET-BLINDNESS}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-CONDUIT_POWER}":
+        set {_potion} to CONDUIT POWER
+        set {_effect} to "{@CHECK-CONDUIT_POWER}"
+        set {_tier} to {@TIER-CONDUIT_POWER}
+        set {_time} to {@TIME-CONDUIT_POWER}
+        set {_target} to {@TARGET-CONDUIT_POWER}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-CONFUSION}":
+        set {_potion} to CONFUSION
+        set {_effect} to "{@CHECK-CONFUSION}"
+        set {_tier} to {@TIER-CONFUSION}
+        set {_time} to {@TIME-CONFUSION}
+        set {_target} to {@TARGET-CONFUSION}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-DAMAGE_RESISTANCE}":
+        set {_potion} to DAMAGE RESISTANCE
+        set {_effect} to "{@CHECK-DAMAGE_RESISTANCE}"
+        set {_tier} to {@TIER-DAMAGE_RESISTANCE}
+        set {_time} to {@TIME-DAMAGE_RESISTANCE}
+        set {_target} to {@TARGET-DAMAGE_RESISTANCE}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-DOLPHINS_GRACE}":
+        set {_potion} to DOLPHINS GRACE
+        set {_effect} to "{@CHECK-DOLPHINS_GRACE}"
+        set {_tier} to {@TIER-DOLPHINS_GRACE}
+        set {_time} to {@TIME-DOLPHINS_GRACE}
+        set {_target} to {@TARGET-DOLPHINS_GRACE}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-FAST_DIGGING}":
+        set {_potion} to FAST DIGGING
+        set {_effect} to "{@CHECK-FAST_DIGGING}"
+        set {_tier} to {@TIER-FAST_DIGGING}
+        set {_time} to {@TIME-FAST_DIGGING}
+        set {_target} to {@TARGET-FAST_DIGGING}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-FIRE_RESISTANCE}":
+        set {_potion} to FIRE RESISTANCE
+        set {_effect} to "{@CHECK-FIRE_RESISTANCE}"
+        set {_tier} to {@TIER-FIRE_RESISTANCE}
+        set {_time} to {@TIME-FIRE_RESISTANCE}
+        set {_target} to {@TARGET-FIRE_RESISTANCE}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-GLOWING}":
+        set {_potion} to GLOWING
+        set {_effect} to "{@CHECK-GLOWING}"
+        set {_tier} to {@TIER-GLOWING}
+        set {_time} to {@TIME-GLOWING}
+        set {_target} to {@TARGET-GLOWING}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-HEALTH_BOOST}":
+        set {_potion} to HEALTH BOOST
+        set {_effect} to "{@CHECK-HEALTH_BOOST}"
+        set {_tier} to {@TIER-HEALTH_BOOST}
+        set {_time} to {@TIME-HEALTH_BOOST}
+        set {_target} to {@TARGET-HEALTH_BOOST}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-HERO_OF_THE_VILLAGE}":
+        set {_potion} to HERO OF THE VILLAGE
+        set {_effect} to "{@CHECK-HERO_OF_THE_VILLAGE}"
+        set {_tier} to {@TIER-HERO_OF_THE_VILLAGE}
+        set {_time} to {@TIME-HERO_OF_THE_VILLAGE}
+        set {_target} to {@TARGET-HERO_OF_THE_VILLAGE}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-HUNGER}":
+        set {_potion} to HUNGER
+        set {_effect} to "{@CHECK-HUNGER}"
+        set {_tier} to {@TIER-HUNGER}
+        set {_time} to {@TIME-HUNGER}
+        set {_target} to {@TARGET-HUNGER}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-INCREASE_DAMAGE}":
+        set {_potion} to INCREASE DAMAGE
+        set {_effect} to "{@CHECK-INCREASE_DAMAGE}"
+        set {_tier} to {@TIER-INCREASE_DAMAGE}
+        set {_time} to {@TIME-INCREASE_DAMAGE}
+        set {_target} to {@TARGET-INCREASE_DAMAGE}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-INVISIBILITY}":
+        set {_potion} to INVISIBILITY
+        set {_effect} to "{@CHECK-INVISIBILITY}"
+        set {_tier} to {@TIER-INVISIBILITY}
+        set {_time} to {@TIME-INVISIBILITY}
+        set {_target} to {@TARGET-INVISIBILITY}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-JUMP}":
+        set {_potion} to JUMP
+        set {_effect} to "{@CHECK-JUMP}"
+        set {_tier} to {@TIER-JUMP}
+        set {_time} to {@TIME-JUMP}
+        set {_target} to {@TARGET-JUMP}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-LEVITATION}":
+        set {_potion} to LEVITATION
+        set {_effect} to "{@CHECK-LEVITATION}"
+        set {_tier} to {@TIER-LEVITATION}
+        set {_time} to {@TIME-LEVITATION}
+        set {_target} to {@TARGET-LEVITATION}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-LUCK}":
+        set {_potion} to LUCK
+        set {_effect} to "{@CHECK-LUCK}"
+        set {_tier} to {@TIER-LUCK}
+        set {_time} to {@TIME-LUCK}
+        set {_target} to {@TARGET-LUCK}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-NIGHT_VISION}":
+        set {_potion} to NIGHT VISION
+        set {_effect} to "{@CHECK-NIGHT_VISION}"
+        set {_tier} to {@TIER-NIGHT_VISION}
+        set {_time} to {@TIME-NIGHT_VISION}
+        set {_target} to {@TARGET-NIGHT_VISION}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-POISON}":
+        set {_potion} to POISON
+        set {_effect} to "{@CHECK-POISON}"
+        set {_tier} to {@TIER-POISON}
+        set {_time} to {@TIME-POISON}
+        set {_target} to {@TARGET-POISON}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-REGENERATION}":
+        set {_potion} to REGENERATION
+        set {_effect} to "{@CHECK-REGENERATION}"
+        set {_tier} to {@TIER-REGENERATION}
+        set {_time} to {@TIME-REGENERATION}
+        set {_target} to {@TARGET-REGENERATION}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-SATURATION}":
+        set {_potion} to SATURATION
+        set {_effect} to "{@CHECK-SATURATION}"
+        set {_tier} to {@TIER-SATURATION}
+        set {_time} to {@TIME-SATURATION}
+        set {_target} to {@TARGET-SATURATION}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-SLOW}":
+        set {_potion} to SLOW
+        set {_effect} to "{@CHECK-SLOW}"
+        set {_tier} to {@TIER-SLOW}
+        set {_time} to {@TIME-SLOW}
+        set {_target} to {@TARGET-SLOW}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-SLOW_DIGGING}":
+        set {_potion} to SLOW DIGGING
+        set {_effect} to "{@CHECK-SLOW_DIGGING}"
+        set {_tier} to {@TIER-SLOW_DIGGING}
+        set {_time} to {@TIME-SLOW_DIGGING}
+        set {_target} to {@TARGET-SLOW_DIGGING}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-SLOW_FALLING}":
+        set {_potion} to SLOW FALLING
+        set {_effect} to "{@CHECK-SLOW_FALLING}"
+        set {_tier} to {@TIER-SLOW_FALLING}
+        set {_time} to {@TIME-SLOW_FALLING}
+        set {_target} to {@TARGET-SLOW_FALLING}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-SPEED}":
+        set {_potion} to SPEED
+        set {_effect} to "{@CHECK-SPEED}"
+        set {_tier} to {@TIER-SPEED}
+        set {_time} to {@TIME-SPEED}
+        set {_target} to {@TARGET-SPEED}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-UNLUCK}":
+        set {_potion} to UNLUCK
+        set {_effect} to "{@CHECK-UNLUCK}"
+        set {_tier} to {@TIER-UNLUCK}
+        set {_time} to {@TIME-UNLUCK}
+        set {_target} to {@TARGET-UNLUCK}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-WATER_BREATHING}":
+        set {_potion} to WATER BREATHING
+        set {_effect} to "{@CHECK-WATER_BREATHING}"
+        set {_tier} to {@TIER-WATER_BREATHING}
+        set {_time} to {@TIME-WATER_BREATHING}
+        set {_target} to {@TARGET-WATER_BREATHING}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-WEAKNESS}":
+        set {_potion} to WEAKNESS
+        set {_effect} to "{@CHECK-WEAKNESS}"
+        set {_tier} to {@TIER-WEAKNESS}
+        set {_time} to {@TIME-WEAKNESS}
+        set {_target} to {@TARGET-WEAKNESS}
+        
+    if "%{_lore::*}%" contains "{@Check}: {@CHECK-WITHER}":
+        set {_potion} to WITHER
+        set {_effect} to "{@CHECK-WITHER}"
+        set {_tier} to {@TIER-WITHER}
+        set {_time} to {@TIME-WITHER}
+        set {_target} to {@TARGET-WITHER}
+        
+    remove {_potion} from {_target}
+    apply {_potion} of tier {_tier} to {_target} for {_time}
+    send "{@MSG_GetBuff}" to {_target}

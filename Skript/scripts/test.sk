@@ -1,0 +1,13 @@
+on damage:
+    attacker is a player
+    victim is a living entity
+    attacker's tool is a sword
+    attacker's tool's lore contains "fire"
+    if {firesword.cooldown::%attacker's uuid%} is not set:
+        set {firesword.cooldown::%attacker's uuid%} to now
+        ignite the victim for 5 seconds
+    else:
+        set {_timeleft} to difference between {firesword.cooldown::%attacker's uuid%} and now
+        if {_timeleft} is more than 2 seconds:
+            set {firesword.cooldown::%attacker's uuid%} to now
+            ignite the victim for 5 seconds

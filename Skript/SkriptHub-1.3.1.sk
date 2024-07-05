@@ -1,0 +1,313 @@
+# Skript Hub Version 1.3.1 ////////////////////////////////////////
+
+options: 
+
+# Do not touch before brackets in Options unless you know what you are doing!
+# The Server Name for messages (with colour codes) Also include whatever arrow you would like and/or brackets.
+	ServerName: &7[&c&lServerName&7] &8»&r
+# The world time that you want it to always be (default 12:00 or noon)
+	Time: 12:00
+# Your world name to change time/weather for (default name world)
+	WorldName: world
+# The colour you want your messages to be (text) by using color codes (Default 7 or gray)
+# (find a website like http://minecraft.tools/en/color-code.php to see the codes)
+# I am not responsible for what this website may contain.
+	TextColour: 7
+
+# ///////////////The Skript : Do not touch unless you know what you are doing!///////////////////
+variables:
+	{jumpboost.preference.%player%} = "False"
+	{speedboost.preference.%player%} = "False"
+	{vanish.preference.%player%} = "False"
+	{lightning.protection} = "False"
+	{explosion.protection} = "False"
+	{hunger.protection} = "True"
+	{damage.protection} = "True"
+	{drop.protection} = "True"
+	{inventoryclick.protection} = "False"
+	{mob.protection} = "True"
+command /jumpboost [<player>]:
+	permission: skripthub.jumpboost
+	permission message: &cNo Permission!
+	trigger:
+		if argument 1 is not set:
+			if {jumpboost.preference.%player%} is "True":
+				set {jumpboost.preference.%player%} to "False"
+				message "{@ServerName} &{@TextColour}Disabled jump boost!"
+			else:
+				set {jumpboost.preference.%player%} to "True"
+				message "{@ServerName} &{@TextColour}Enabled jump boost!"
+		else:
+			if player has permission "skripthub.jumpboost.others":
+				if arg 1 is online:
+					if {jumpboost.preference.%arg 1%} is "True":
+						set {jumpboost.preference.%arg 1%} to "False"
+						message "{@ServerName} &{@TextColour}Disabled jump boost for player!"
+					else:
+						set {jumpboost.preference.%arg 1%} to "True"
+						message "{@ServerName} &{@TextColour}Enabled jump boost for player!"
+				else:
+					message "&cError: Not online!"
+			else:
+				if {jumpboost.preference.%player%} is "True":
+					set {jumpboost.preference.%player%} to "False"
+					message "{@ServerName} &{@TextColour}Disabled jump boost!"
+				else:
+					set {jumpboost.preference.%player%} to "True"
+					message "{@ServerName} &{@TextColour}Enabled jump boost!"
+command /speedboost [<player>]:
+	permission: skripthub.speedboost
+	permission message: &cNo Permission!
+	trigger:
+		if argument 1 is not set:
+			if {speedboost.preference.%player%} is "True":
+				set {speedboost.preference.%player%} to "False"
+				message "{@ServerName} &{@TextColour}Disabled speed boost!"
+			else:
+				set {speedboost.preference.%player%} to "True"
+				message "{@ServerName} &{@TextColour}Enabled speed boost!"
+		else:
+			if player has permission "skripthub.speedboost.others":
+				if arg 1 is online:
+					if {speedboost.preference.%arg 1%} is "True":
+						set {speedboost.preference.%arg 1%} to "False"
+						message "{@ServerName} &{@TextColour}Disabled speed boost for player!"
+					else:
+						set {speedboost.preference.%arg 1%} to "True"
+						message "{@ServerName} &{@TextColour}Enabled speed boost for player!"
+				else:
+					message "&cError: Not online!"
+			else:
+				if {speedboost.preference.%player%} is "True":
+					set {speedboost.preference.%player%} to "False"
+					message "{@ServerName} &{@TextColour}Disabled speed boost!"
+				else:
+					set {speedboost.preference.%player%} to "True"
+					message "{@ServerName} &{@TextColour}Enabled speed boost!"
+every 20 ticks:
+	if weather in "{@WorldName}" is not clear:
+		set weather in "{@WorldName}" to clear
+	if time in "{@WorldName}" is not {@Time}:
+		set time in "{@WorldName}" to {@Time}
+	loop all players:
+		if {jumpboost.preference.%loop-player%} is "True":
+			if loop-player has jump boost:
+				stop
+			else:
+				apply jump boost 3 to the loop-player for 999 days
+		if {jumpboost.preference.%loop-player%} is "False":
+			remove jump boost from loop-player
+		if {speedboost.preference.%loop-player%} is "True":
+			if loop-player has speed:
+				stop
+			else:
+				apply speed 3 to the loop-player for 999 days
+		if {speedboost.preference.%loop-player%} is "False":
+			remove speed from loop-player
+		if {vanish.preference.%loop-player%} is "False":
+			reveal all players from loop-player
+		if {vanish.preference.%loop-player%} is "True":
+			hide all players from loop-player
+		heal the loop-player
+		if y coordinate of loop-player is less than -20:
+			teleport loop-player to {spawn.location}
+command /setspawn:
+	permission: skripthub.setspawn
+	permission message: &cNo Permission!
+	trigger:
+		set {spawn.location} to location of player
+		message "{@ServerName} &{@TextColour}Spawn Set!"
+command /spawn:
+	permission: skripthub.spawn
+	permission message: &cNo Permission!
+	trigger:
+		if {spawn.location} is not set:
+			message "{@ServerName} &{@TextColour}No spawn!"
+		if {spawn.location} is set:
+			teleport player to {spawn.location}
+			message "{@ServerName} &{@TextColour}Teleported to spawn!"
+command /skripthub [<string>] [<string>]:
+	permission: skripthub.admin
+	permission message: &cNo Permission!
+	trigger:
+		if argument 1 is "antilightning":
+			if argument 2 is "on":
+				set {lightning.protection} to "True"
+				message "&{@TextColour}&lSkriptHub &8» &{@TextColour}Lightning protection on!"
+			else if argument 2 is "off":
+				set {lightning.protection} to "False"
+				message "&{@TextColour}&lSkriptHub &8» &{@TextColour}Lightning protection off!"
+			else:
+				message "&cIncorrect Syntax: Please specify [on/off]"
+		if argument 1 is "antiexplosion":
+			if argument 2 is "on":
+				set {explosion.protection} to "True"
+				message "&{@TextColour}&lSkriptHub &8» &{@TextColour}Explosion protection on!"
+			else if argument 2 is "off":
+				set {explosion.protection} to "False"
+				message "&{@TextColour}&lSkriptHub &8» &{@TextColour}Explosion protection off!"
+			else:
+				message "&cIncorrect Syntax: Please specify [on/off]"
+		if argument 1 is "antihunger":
+			if argument 2 is "on":
+				set {hunger.protection} to "True"
+				message "&{@TextColour}&lSkriptHub &8» &{@TextColour}Hunger protection on!"
+			else if argument 2 is "off":
+				set {hunger.protection} to "False"
+				message "&{@TextColour}&lSkriptHub &8» &{@TextColour}Hunger protection off!"
+			else:
+				message "&cIncorrect Syntax: Please specify [on/off]"
+		if argument 1 is "antidamage":
+			if argument 2 is "on":
+				set {damage.protection} to "True"
+				message "&{@TextColour}&lSkriptHub &8» &{@TextColour}Damage protection on!"
+			else if argument 2 is "off":
+				set {damage.protection} to "False"
+				message "&{@TextColour}&lSkriptHub &8» &{@TextColour}Damage protection off!"
+			else:
+				message "&cIncorrect Syntax: Please specify [on/off]"
+		if argument 1 is "antidrop":
+			if argument 2 is "on":
+				set {drop.protection} to "True"
+				message "&{@TextColour}&lSkriptHub &8» &{@TextColour}Drop protection on!"
+			else if argument 2 is "off":
+				set {drop.protection} to "False"
+				message "&{@TextColour}&lSkriptHub &8» &{@TextColour}Drop protection off!"
+			else:
+				message "&cIncorrect Syntax: Please specify [on/off]"
+		if argument 1 is "antiinventoryclick":
+			if argument 2 is "on":
+				set {inventoryclick.protection} to "True"
+				message "&{@TextColour}&lSkriptHub &8» &{@TextColour}Click protection on!"
+			else if argument 2 is "off":
+				set {inventoryclick.protection} to "False"
+				message "&{@TextColour}&lSkriptHub &8» &{@TextColour}Click protection off!"
+			else:
+				message "&cIncorrect Syntax: Please specify [on/off]"
+		if argument 1 is "antimobspawn":
+			if argument 2 is "on":
+				set {mob.protection} to "True"
+				message "&{@TextColour}&lSkriptHub &8» &{@TextColour}Mob protection on!"
+			else if argument 2 is "off":
+				set {mob.protection} to "False"
+				message "&{@TextColour}&lSkriptHub &8» &{@TextColour}Mob protection off!"
+			else:
+				message "&cIncorrect Syntax: Please specify [on/off]"
+		if argument 1 is "boostgui" or "boostmenu":
+			open chest with 1 rows named "&{@TextColour}Boosts" to player
+			format slot 0 of player with feather named "&f&lSpeedboost" with lore "&7Click to toggle" to close then run [execute player command "speedboost"]
+			format slot 1 of player with potion of:8235 named "&a&lJumpboost" with lore "&7Click to toggle" to close then run [execute player command "jumpboost"]
+			format slot 1 of player with redstone block named "&4&lExit" with lore "&7Click to close" to close
+		if argument 1 is "admingui" or "adminmenu":
+			open chest with 3 rows named "&7Options" to player
+			format slot 0 of player with gold ingot named "&e&lAnti-Lightning" to be unstealable
+			format slot 1 of player with tnt named "&c&lAnti-Explosion" with lore "&7Click to toggle" to be unstealable
+			format slot 2 of player with steak named "&7&lAnti-Hunger" with lore "&7Click to toggle" to be unstealable
+			format slot 3 of player with diamond sword named "&c&lAnti-Damage" with lore "&7Click to toggle" to be unstealable
+			format slot 4 of player with chest named "&7&lAnti-Drop" with lore "&7Click to toggle" to be unstealable
+			format slot 5 of player with map named "&c&lAnti-Inventory Click" with lore "&7Click to toggle" to be unstealable
+			format slot 6 of player with spawn egg:50 named "&f&lAnti-Mob Spawn" with lore "&7Click to toggle" to be unstealable
+			format slot 7 of player with stained glass pane:7 named " " to close
+			format slot 8 of player with stained glass pane:7 named " " to close
+			format slot 9 of player with stained glass pane:5 named "&e&lAnti-Lightning" with lore "&7Click to turn on" to close then run [execute player command "skripthub antilightning on"]
+			format slot 10 of player with stained glass pane:5 named "&c&lAnti-Explosion" with lore "&7Click to turn on" to close then run [execute player command "skripthub antiexplosion on"]
+			format slot 11 of player with stained glass pane:5 named "&7&lAnti-Hunger" with lore "&7Click to turn on" to close then run [execute player command "skripthub antihunger on"]
+			format slot 12 of player with stained glass pane:5 named "&c&lAnti-Damage" with lore "&7Click to turn on" to close then run [execute player command "skripthub antidamage on"]
+			format slot 13 of player with stained glass pane:5 named "&7&lAnti-Drop" with lore "&7Click to turn on" to close then run [execute player command "skripthub antidrop on"]
+			format slot 14 of player with stained glass pane:5 named "&c&lAnti-Inventory Click" with lore "&7Click to turn on" to close then run [execute player command "skripthub antiinventoryclick on"]
+			format slot 15 of player with stained glass pane:5 named "&f&lAnti-Mob Spawn" with lore "&7Click to turn on" to close then run [execute player command "skripthub antimobspawn on"]
+			format slot 16 of player with stained glass pane:7 named " " to close
+			format slot 17 of player with stained glass pane:7 named " " to close
+			format slot 18 of player with stained glass pane:14 named "&e&lAnti-Lightning" with lore "&7Click to turn off" to close then run [execute player command "skripthub antilightning off"]
+			format slot 19 of player with stained glass pane:14 named "&c&lAnti-Explosion" with lore "&7Click to turn off" to close then run [execute player command "skripthub antiexplosion off"]
+			format slot 20 of player with stained glass pane:14 named "&7&lAnti-Hunger" with lore "&7Click to turn off" to close then run [execute player command "skripthub antihunger off"]
+			format slot 21 of player with stained glass pane:14 named "&c&lAnti-Damage" with lore "&7Click to turn off" to close then run [execute player command "skripthub antidamage off"]
+			format slot 22 of player with stained glass pane:14 named "&7&lAnti-Drop" with lore "&7Click to turn off" to close then run [execute player command "skripthub antidrop off"]
+			format slot 23 of player with stained glass pane:14 named "&c&lAnti-Inventory Click" with lore "&7Click to turn off" to close then run [execute player command "skripthub antiinventoryclick off"]
+			format slot 24 of player with stained glass pane:14 named "&f&lAnti-Mob Spawn" with lore "&7Click to turn off" to close then run [execute player command "skripthub antimobspawn off"]
+			format slot 25 of player with stained glass pane:7 named " " to close
+			format slot 26 of player with redstone block named "&4&lExit" with lore "&7Click to close" to close
+		if argument 1 is "version":
+			message "&7&lSkriptHub &c1.2 &8» &7https://www.spigotmc.org/resources/skript-hub-skript.16151/"
+		if argument 1 is not set:
+			message "&cIncorrect Syntax: Please use /skripthub [antilightning|antiexplosion|antihunger|antidamage|antidrop|antiinventoryclick|antimobspawn|boostgui/boostmenu|admingui/adminmenu|version] [on/off]"
+on inventory click:
+	if {inventoryclick.protection} is "True":
+		if player has permission "skripthub.click":
+			stop
+		else:
+			cancel event
+	else if {inventoryclick.protection} is "False":
+		stop
+	if {inventoryclick.protection} is not set:
+		stop
+on drop:
+	if {drop.protection} is "True":
+		if player has permission "skripthub.drop":
+			stop
+		else:
+			cancel event
+	else if {drop.protection} is "False":
+		stop
+	if {drop.protection} is not set:
+		stop
+on damage:
+	if {damage.protection} is "True":
+		cancel event
+	else if {damage.protection} is "False":
+		stop
+	if {damage.protection} is not set:
+		stop
+on hunger bar change:
+	if {hunger.protection} is "True":
+		cancel event
+		add 20 to the player's hunger bar
+	else if {hunger.protection} is "False":
+		stop
+	if {hunger.protection} is not set:
+		stop
+on lightning strike:
+	if {lightning.protection} is "True":
+		cancel event
+	else if {lightning.protection} is "False":
+		stop
+	if {lightning.protection} is not set:
+		stop
+on explosion:
+	if {explosion.protection} is "True":
+		cancel event
+	else if {explosion.protection} is "False":
+		stop
+	if {explosion.protection} is not set:
+		stop
+on spawn:
+	if {mob.protection} is "True":
+		cancel event
+	else if {mob.protection} is "False":
+		stop
+	if {mob.protection} is not set:
+		stop
+command /vanishplayers:
+	permission: skripthub.vanish
+	permission message: &cNo Permission!
+	trigger:
+		if {vanish.preference.%player%} is "False":
+			set {vanish.preference.%player%} to "True"
+			message "{@ServerName} &{@TextColour}Vanished players!"
+		else:
+			set {vanish.preference.%player%} to "False"
+			message "{@ServerName} &{@TextColour}Unvanished players!"
+command /boosts:
+	permission: skripthub.boosts
+	permission message: &cNo Permission!
+	trigger:
+		open chest with 1 rows named "&7Boosts" to player
+		format slot 0 of player with feather named "&f&lSpeedboost" with lore "&7Click to toggle" to close then run [execute player command "speedboost"]
+		format slot 1 of player with potion of:8235 named "&a&lJumpboost" with lore "&7Click to toggle" to close then run [execute player command "jumpboost"]
+		format slot 2 of player with stained glass pane:7 named " " to close
+		format slot 3 of player with stained glass pane:7 named " " to close
+		format slot 4 of player with stained glass pane:7 named " " to close
+		format slot 5 of player with stained glass pane:7 named " " to close
+		format slot 6 of player with stained glass pane:7 named " " to close
+		format slot 7 of player with stained glass pane:7 named " " to close
+		format slot 8 of player with redstone block named "&4&lExit" with lore "&7Click to close" to close

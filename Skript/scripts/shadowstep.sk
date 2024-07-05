@@ -1,0 +1,45 @@
+command /shadowstep:
+    permission: skill.shadowstep
+    trigger:
+        set {_uuid} to uuid of player
+        if {shadowstep_cooldown::%{_uuid}%} is not set:
+            shadowstep(player)
+        else if difference between now and {shadowstep_cooldown::%{_uuid}%} is more than 15 seconds:
+            shadowstep(player)
+        else:
+            send "&cคุณยังไม่สามารถใช้ความสามารถนี้ได้! โปรดรอ %remaining time%." to player
+            set {_remaining} to 15 seconds - (difference between now and {shadowstep_cooldown::%{_uuid}%})
+            set {_remaining} to "%{_remaining}%"
+            replace all "and" with "" in {_remaining}
+            send "&cเวลาที่เหลือ: %{_remaining}%" to player
+
+function shadowstep(p: player):
+    set {_loc} to location of {_p}
+    set {_yaw} to yaw of {_p}
+    
+    # คำนวณตำแหน่งใหม่เฉพาะในแนวระนาบ
+    set {_x} to x-coordinate of {_loc} - (10 * sin({_yaw} * pi / 180))
+    set {_z} to z-coordinate of {_loc} + (10 * cos({_yaw} * pi / 180))
+    set {_y} to y-coordinate of {_loc}
+    
+    set {_newloc} to location({_x}, {_y}, {_z}, world of {_p})
+    
+    # ปรับตำแหน่งให้ปลอดภัย
+    while block at {_newloc} is not air:
+        set {_newloc} to location 1 block above {_newloc}
+        if y-coordinate of {_newloc} - {_y} > 5:
+            send "&cไม่สามารถหาตำแหน่งที่ปลอดภัยได้!" to {_p}
+            stop
+    
+    # ตรวจสอบว่ามีพื้นรองรับหรือไม่
+    set {_ground} to {_newloc}
+    loop 5 times:
+        if block at {_ground} is not air:
+            teleport {_p} to location 1 block above {_ground}
+            set {shadowstep_cooldown::%uuid of {_p}%} to now
+            send "&aคุณได้ใช้ Shadow Step แล้ว!" to {_p}
+            stop
+        set {_ground} to location 1 block below {_ground}
+    
+    # ถ้าไม่พบพื้นที่ปลอดภัย
+    send "&cไม่สามารถหาตำแหน่งที่ปลอดภัยได้!" to {_p}
